@@ -7,33 +7,43 @@ class GildedRose(object):
 
     def update_quality(self):
         for item in self.items:
-            if self.is_sulfuras(item) or self.is_generic(item):
-                if item.quality > 0:
-                    if not self.is_sulfuras(item):
-                        self.decrease_quality(item)
-            else:
+            if self.is_sulfuras(item):
+                pass
+            elif self.is_generic(item):
+                self.handle_generic(item)
+            elif self.is_aged_brie(item):
+                self.handle_aged_brie(item)
+            elif self.is_backstage_pass(item):
+                self.handle_backstage_pass(item)
+
+    def handle_aged_brie(self, item):
+        if self.quality_less_than_50(item):
+            self.increase_quality(item)
+        item.sell_in = item.sell_in - 1
+        if item.sell_in < 0:
+            if self.quality_less_than_50(item):
+                self.increase_quality(item)
+
+    def handle_generic(self, item):
+        if item.quality > 0:
+            self.decrease_quality(item)
+        item.sell_in = item.sell_in - 1
+        if item.sell_in < 0:
+            if item.quality > 0:
+                self.decrease_quality(item)
+
+    def handle_backstage_pass(self, item):
+        if self.quality_less_than_50(item):
+            self.increase_quality(item)
+            if item.sell_in < 11:
                 if self.quality_less_than_50(item):
                     self.increase_quality(item)
-                    if self.is_backstage_pass(item):
-                        if item.sell_in < 11:
-                            if self.quality_less_than_50(item):
-                                self.increase_quality(item)
-                        if item.sell_in < 6:
-                            if self.quality_less_than_50(item):
-                                self.increase_quality(item)
-            if not self.is_sulfuras(item):
-                item.sell_in = item.sell_in - 1
-            if item.sell_in < 0:
-                if not self.is_aged_brie(item):
-                    if not self.is_backstage_pass(item):
-                        if item.quality > 0:
-                            if not self.is_sulfuras(item):
-                                self.decrease_quality(item)
-                    else:
-                        item.quality = item.quality - item.quality
-                else:
-                    if self.quality_less_than_50(item):
-                        self.increase_quality(item)
+            if item.sell_in < 6:
+                if self.quality_less_than_50(item):
+                    self.increase_quality(item)
+        item.sell_in = item.sell_in - 1
+        if item.sell_in < 0:
+            item.quality = item.quality - item.quality
 
     def is_generic(self, item):
         return not(self.is_aged_brie(item) or self.is_backstage_pass(item) or self.is_sulfuras(item))
