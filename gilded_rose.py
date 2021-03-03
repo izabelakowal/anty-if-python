@@ -1,6 +1,53 @@
 # -*- coding: utf-8 -*-
 
 
+class Generic:
+    def __init__(self, quality, sell_in):
+        self.quality = quality
+        self.sell_in = sell_in
+
+    def update(self):
+        if self.quality > 0:
+            self.quality = self.quality - 1
+        self.sell_in = self.sell_in - 1
+        if self.sell_in < 0:
+            if self.quality > 0:
+                self.quality = self.quality - 1
+                
+
+class AgedBrie:
+    def __init__(self, quality, sell_in):
+        self.quality = quality
+        self.sell_in = sell_in
+
+    def update(self):
+        if self.quality < 50:
+            self.quality = self.quality + 1
+        self.sell_in = self.sell_in - 1
+        if self.sell_in < 0:
+            if self.quality < 50:
+                self.quality = self.quality + 1
+                
+                
+class BackstagePass:
+    def __init__(self, quality, sell_in):
+        self.quality = quality
+        self.sell_in = sell_in
+
+    def update(self):
+        if self.quality < 50:
+            self.quality = self.quality + 1
+            if self.sell_in < 11:
+                if self.quality < 50:
+                    self.quality = self.quality + 1
+            if self.sell_in < 6:
+                if self.quality < 50:
+                    self.quality = self.quality + 1
+        self.sell_in = self.sell_in - 1
+        if self.sell_in < 0:
+            self.quality = self.quality - self.quality
+    
+
 class GildedRose(object):
     def __init__(self, items):
         self.items = items
@@ -10,52 +57,28 @@ class GildedRose(object):
             if self.is_sulfuras(item):
                 pass
             elif self.is_generic(item):
-                self.handle_generic(item)
+                generic = Generic(item.quality, item.sell_in)
+                generic.update()
+                item.quality = generic.quality
+                item.sell_in = generic.sell_in
+
             elif self.is_aged_brie(item):
-                self.handle_aged_brie(item)
+                aged_brie = AgedBrie(item.quality, item.sell_in)
+                aged_brie.update()
+                item.quality = aged_brie.quality
+                item.sell_in = aged_brie.sell_in
+                
             elif self.is_backstage_pass(item):
-                self.handle_backstage_pass(item)
-
-    def handle_aged_brie(self, item):
-        if self.quality_less_than_50(item):
-            self.increase_quality(item)
-        item.sell_in = item.sell_in - 1
-        if item.sell_in < 0:
-            if self.quality_less_than_50(item):
-                self.increase_quality(item)
-
-    def handle_generic(self, item):
-        if item.quality > 0:
-            self.decrease_quality(item)
-        item.sell_in = item.sell_in - 1
-        if item.sell_in < 0:
-            if item.quality > 0:
-                self.decrease_quality(item)
-
-    def handle_backstage_pass(self, item):
-        if self.quality_less_than_50(item):
-            self.increase_quality(item)
-            if item.sell_in < 11:
-                if self.quality_less_than_50(item):
-                    self.increase_quality(item)
-            if item.sell_in < 6:
-                if self.quality_less_than_50(item):
-                    self.increase_quality(item)
-        item.sell_in = item.sell_in - 1
-        if item.sell_in < 0:
-            item.quality = item.quality - item.quality
+                backstage_pass = BackstagePass(item.quality, item.sell_in)
+                backstage_pass.update()
+                item.quality = backstage_pass.quality
+                item.sell_in = backstage_pass.sell_in
+                
+            elif self.is_conjured(item):
+                pass
 
     def is_generic(self, item):
         return not(self.is_aged_brie(item) or self.is_backstage_pass(item) or self.is_sulfuras(item))
-
-    def increase_quality(self, item):
-        item.quality = item.quality + 1
-
-    def decrease_quality(self, item):
-        item.quality = item.quality - 1
-
-    def quality_less_than_50(self, item):
-        return item.quality < 50
 
     def is_aged_brie(self, item):
         return item.name == "Aged Brie"
@@ -65,6 +88,9 @@ class GildedRose(object):
 
     def is_sulfuras(self, item):
         return item.name == "Sulfuras, Hand of Ragnaros"
+
+    def is_conjured(self, item):
+        return item.name == "Conjured"
 
 
 class Item:
