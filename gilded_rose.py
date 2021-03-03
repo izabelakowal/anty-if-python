@@ -7,10 +7,7 @@ class GildedRose(object):
 
     def update_quality(self):
         for item in self.items:
-            if (
-                not self.is_aged_brie(item)
-                and not self.is_backstage_pass(item)
-            ):
+            if self.is_sulfuras(item) or self.is_generic(item):
                 if item.quality > 0:
                     if not self.is_sulfuras(item):
                         self.decrease_quality(item)
@@ -37,6 +34,9 @@ class GildedRose(object):
                 else:
                     if self.quality_less_than_50(item):
                         self.increase_quality(item)
+
+    def is_generic(self, item):
+        return not(self.is_aged_brie(item) or self.is_backstage_pass(item) or self.is_sulfuras(item))
 
     def increase_quality(self, item):
         item.quality = item.quality + 1
