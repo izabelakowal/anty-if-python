@@ -29,6 +29,15 @@ class AgedBrie:
                 self.quality = self.quality + 1
                 
                 
+class Sulfuras:
+    def __init__(self, quality, sell_in):
+        self.quality = quality
+        self.sell_in = sell_in
+
+    def update(self):
+        pass
+                
+                
 class BackstagePass:
     def __init__(self, quality, sell_in):
         self.quality = quality
@@ -55,7 +64,11 @@ class GildedRose(object):
     def update_quality(self):
         for item in self.items:
             if self.is_sulfuras(item):
-                pass
+                sulfuras = Sulfuras(item.quality, item.sell_in)
+                sulfuras.update()
+                item.quality = sulfuras.quality
+                item.sell_in = sulfuras.sell_in
+                
             elif self.is_generic(item):
                 generic = Generic(item.quality, item.sell_in)
                 generic.update()
