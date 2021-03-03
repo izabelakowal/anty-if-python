@@ -55,43 +55,21 @@ class BackstagePass:
         self.sell_in = self.sell_in - 1
         if self.sell_in < 0:
             self.quality = self.quality - self.quality
-    
 
-class GildedRose(object):
-    def __init__(self, items):
-        self.items = items
 
-    def update_quality(self):
-        for item in self.items:
-            if self.is_sulfuras(item):
-                sulfuras = Sulfuras(item.quality, item.sell_in)
-                sulfuras.update()
-                item.quality = sulfuras.quality
-                item.sell_in = sulfuras.sell_in
-                
-            elif self.is_generic(item):
-                generic = Generic(item.quality, item.sell_in)
-                generic.update()
-                item.quality = generic.quality
-                item.sell_in = generic.sell_in
-
-            elif self.is_aged_brie(item):
-                aged_brie = AgedBrie(item.quality, item.sell_in)
-                aged_brie.update()
-                item.quality = aged_brie.quality
-                item.sell_in = aged_brie.sell_in
-                
-            elif self.is_backstage_pass(item):
-                backstage_pass = BackstagePass(item.quality, item.sell_in)
-                backstage_pass.update()
-                item.quality = backstage_pass.quality
-                item.sell_in = backstage_pass.sell_in
-                
-            elif self.is_conjured(item):
-                pass
+class GoodCategory:
+    def build_for(self, item):
+        if self.is_sulfuras(item):
+            return Sulfuras(item.quality, item.sell_in)
+        elif self.is_generic(item):
+            return Generic(item.quality, item.sell_in)
+        elif self.is_aged_brie(item):
+            return AgedBrie(item.quality, item.sell_in)
+        elif self.is_backstage_pass(item):
+            return BackstagePass(item.quality, item.sell_in)
 
     def is_generic(self, item):
-        return not(self.is_aged_brie(item) or self.is_backstage_pass(item) or self.is_sulfuras(item))
+        return not (self.is_aged_brie(item) or self.is_backstage_pass(item) or self.is_sulfuras(item))
 
     def is_aged_brie(self, item):
         return item.name == "Aged Brie"
@@ -101,9 +79,18 @@ class GildedRose(object):
 
     def is_sulfuras(self, item):
         return item.name == "Sulfuras, Hand of Ragnaros"
+    
 
-    def is_conjured(self, item):
-        return item.name == "Conjured"
+class GildedRose(object):
+    def __init__(self, items):
+        self.items = items
+
+    def update_quality(self):
+        for item in self.items:
+            good = GoodCategory().build_for(item)
+            good.update()
+            item.quality = good.quality
+            item.sell_in = good.sell_in
 
 
 class Item:
