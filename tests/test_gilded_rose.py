@@ -65,4 +65,29 @@ def test_report():
 
 
 def assert_backstage_pass_quality(expected, sell_in, quality):
-    pass
+    items = [Item("Backstage passes to a TAFKAL80ETC concert", sell_in, quality)]
+    GildedRose(items).update_quality()
+    assert expected == items[0].quality
+
+
+def test_backstage_pass():
+    assert_backstage_pass_quality(22, 8, 20)
+    assert_backstage_pass_quality(23, 4, 20)
+    assert_backstage_pass_quality(23, 4, 20)
+    assert_backstage_pass_quality(0, 0, 20)
+
+
+def assert_aged_brie_quality(expected, sell_in, quality):
+    items = [Item("Aged Brie", sell_in, quality)]
+    GildedRose(items).update_quality()
+    assert expected == items[0].quality
+
+
+def test_aged_brie():
+    assert_aged_brie_quality(22, 0, 20)
+
+
+def test_generic():
+    items = [Item("foo", -1, 3)]
+    GildedRose(items).update_quality()
+    assert 1 == items[0].quality
