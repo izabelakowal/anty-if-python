@@ -16,48 +16,36 @@ class Quality:
 
 
 class Generic:
-    def __init__(self, quality):
-        self.quality = quality
-
-    def update(self, sell_in):
-        self.quality.degrade()
+    def update(self, quality, sell_in):
+        quality.degrade()
         if sell_in < 0:
-            self.quality.degrade()
+            quality.degrade()
 
 
 class AgedBrie:
-    def __init__(self, quality):
-        self.quality = quality
-
     @staticmethod
-    def build(quality, sell_in):
+    def build(sell_in):
         if sell_in < 0:
-            return AgedBrie.Expired(quality)
+            return AgedBrie.Expired()
         else:
-            return AgedBrie(quality)
+            return AgedBrie()
 
     class Expired:
-        def __init__(self, quality):
-            self.quality = quality
+        def update(self, quality, _):
+            quality.increase()
+            quality.increase()
 
-        def update(self, _):
-            self.quality.increase()
-            self.quality.increase()
-
-    def update(self, sell_in):
-        self.quality.increase()
+    def update(self, quality, _):
+        quality.increase()
 
 
 class BackstagePass:
-    def __init__(self, quality):
-        self.quality = quality
-
-    def update(self, sell_in):
-        self.quality.increase()
+    def update(self, quality, sell_in):
+        quality.increase()
         if sell_in < 10:
-            self.quality.increase()
+            quality.increase()
         if sell_in < 5:
-            self.quality.increase()
+            quality.increase()
             
         if sell_in < 0:
-            self.quality.reset()
+            quality.reset()
