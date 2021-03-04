@@ -16,10 +16,21 @@ class Quality:
 
 
 class Generic:
-    def update(self, quality, sell_in):
-        quality.degrade()
+    @staticmethod
+    def build(sell_in):
         if sell_in < 0:
+            return Generic.Expired()
+        else:
+            return Generic()
+
+    class Expired:
+        def update(self, quality):
             quality.degrade()
+            quality.degrade()
+
+    def update(self, quality):
+        quality.degrade()
+
 
 
 class AgedBrie:
@@ -31,21 +42,41 @@ class AgedBrie:
             return AgedBrie()
 
     class Expired:
-        def update(self, quality, _):
+        def update(self, quality):
             quality.increase()
             quality.increase()
 
-    def update(self, quality, _):
+    def update(self, quality):
         quality.increase()
 
 
 class BackstagePass:
-    def update(self, quality, sell_in):
-        quality.increase()
-        if sell_in < 10:
-            quality.increase()
-        if sell_in < 5:
-            quality.increase()
-            
+    @staticmethod
+    def build(sell_in):
         if sell_in < 0:
+            return BackstagePass.Expired()
+        elif sell_in < 5:
+            return BackstagePass.LessThan5Days()
+        elif sell_in < 10:
+            return BackstagePass.LessThan10Days()
+        else:
+            return BackstagePass()
+
+    def update(self, quality):
+        quality.increase()
+
+    class Expired:
+        def update(self, quality):
             quality.reset()
+
+    class LessThan5Days:
+        def update(self, quality):
+            quality.increase()
+            quality.increase()
+            quality.increase()
+
+    class LessThan10Days:
+        def update(self, quality):
+            quality.increase()
+            quality.increase()
+
