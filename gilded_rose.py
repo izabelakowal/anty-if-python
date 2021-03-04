@@ -28,6 +28,7 @@ class GildedRose(object):
     def update_quality(self):
         for item in self.items:
             if not self.is_sulfuras(item):
+                # item.sell_in -= 1
                 good = GoodCategory().build_for(item)
                 good.update()
                 item.quality = good.quality

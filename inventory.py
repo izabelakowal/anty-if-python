@@ -61,11 +61,11 @@ class BackstagePass:
 
     def update(self):
         self._quality.increase()
-        if self._quality.is_less_than_50():
-            if self.sell_in < 11:
-                self._quality.increase()
-            if self.sell_in < 6:
-                self._quality.increase()
+        if self.sell_in < 11:
+            self._quality.increase()
+        if self.sell_in < 6:
+            self._quality.increase()
+            
         self.sell_in = self.sell_in - 1
         if self.sell_in < 0:
             self._quality.reset()
