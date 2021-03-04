@@ -50,19 +50,6 @@ class AgedBrie:
             self._quality.increase()
 
 
-class Sulfuras:
-    def __init__(self, quality, sell_in):
-        self._quality = Quality(quality)
-        self.sell_in = sell_in
-
-    @property
-    def quality(self):
-        return self._quality.amount
-
-    def update(self):
-        pass
-
-
 class BackstagePass:
     def __init__(self, quality, sell_in):
         self._quality = Quality(quality)
