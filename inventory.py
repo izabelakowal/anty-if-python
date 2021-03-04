@@ -17,21 +17,17 @@ class Quality:
 
 class Generic:
     def __init__(self, quality):
-        self._quality = Quality(quality)
-
-    @property
-    def quality(self):
-        return self._quality.amount
+        self.quality = quality
 
     def update(self, sell_in):
-        self._quality.degrade()
+        self.quality.degrade()
         if sell_in < 0:
-            self._quality.degrade()
+            self.quality.degrade()
 
 
 class AgedBrie:
     def __init__(self, quality):
-        self._quality = Quality(quality)
+        self.quality = quality
 
     @staticmethod
     def build(quality, sell_in):
@@ -42,38 +38,26 @@ class AgedBrie:
 
     class Expired:
         def __init__(self, quality):
-            self._quality = Quality(quality)
-
-        @property
-        def quality(self):
-            return self._quality.amount
+            self.quality = quality
 
         def update(self, _):
-            self._quality.increase()
-            self._quality.increase()
-
-    @property
-    def quality(self):
-        return self._quality.amount
+            self.quality.increase()
+            self.quality.increase()
 
     def update(self, sell_in):
-        self._quality.increase()
+        self.quality.increase()
 
 
 class BackstagePass:
     def __init__(self, quality):
-        self._quality = Quality(quality)
-
-    @property
-    def quality(self):
-        return self._quality.amount
+        self.quality = quality
 
     def update(self, sell_in):
-        self._quality.increase()
+        self.quality.increase()
         if sell_in < 10:
-            self._quality.increase()
+            self.quality.increase()
         if sell_in < 5:
-            self._quality.increase()
+            self.quality.increase()
             
         if sell_in < 0:
-            self._quality.reset()
+            self.quality.reset()

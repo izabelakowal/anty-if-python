@@ -3,13 +3,13 @@ import inventory
 
 
 class GoodCategory:
-    def build_for(self, item):
+    def build_for(self, item, quality: inventory.Quality):
         if item.name == "Backstage passes to a TAFKAL80ETC concert":
-            return inventory.BackstagePass(item.quality)
+            return inventory.BackstagePass(quality)
         elif item.name == "Aged Brie":
-            return inventory.AgedBrie.build(item.quality, item.sell_in)
+            return inventory.AgedBrie.build(quality, item.sell_in)
         else:
-            return inventory.Generic(item.quality)
+            return inventory.Generic(quality)
     
 
 class GildedRose(object):
@@ -20,9 +20,10 @@ class GildedRose(object):
         for item in self.items:
             if not self.is_sulfuras(item):
                 item.sell_in = item.sell_in - 1
-                good = GoodCategory().build_for(item)
+                quality = inventory.Quality(item.quality)
+                good = GoodCategory().build_for(item, quality)
                 good.update(item.sell_in)
-                item.quality = good.quality
+                item.quality = quality.amount
 
     def is_sulfuras(self, item):
         return item.name == "Sulfuras, Hand of Ragnaros"
