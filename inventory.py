@@ -24,13 +24,14 @@ class Generic:
             return Generic()
 
     class Expired:
-        def update(self, quality):
+        @staticmethod
+        def update(quality):
             quality.degrade()
             quality.degrade()
 
-    def update(self, quality):
+    @staticmethod
+    def update(quality):
         quality.degrade()
-
 
 
 class AgedBrie:
@@ -42,11 +43,13 @@ class AgedBrie:
             return AgedBrie()
 
     class Expired:
-        def update(self, quality):
+        @staticmethod
+        def update( quality):
             quality.increase()
             quality.increase()
 
-    def update(self, quality):
+    @staticmethod
+    def update(quality):
         quality.increase()
 
 
@@ -62,21 +65,25 @@ class BackstagePass:
         else:
             return BackstagePass()
 
-    def update(self, quality):
+    @staticmethod
+    def update(quality):
         quality.increase()
 
     class Expired:
-        def update(self, quality):
+        @staticmethod
+        def update(quality):
             quality.reset()
 
     class LessThan5Days:
-        def update(self, quality):
+        @staticmethod
+        def update(quality):
             quality.increase()
             quality.increase()
             quality.increase()
 
     class LessThan10Days:
-        def update(self, quality):
+        @staticmethod
+        def update(quality):
             quality.increase()
             quality.increase()
 

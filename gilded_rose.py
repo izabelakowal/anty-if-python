@@ -3,7 +3,8 @@ import inventory
 
 
 class GoodCategory:
-    def build_for(self, item):
+    @staticmethod
+    def build_for(item):
         if item.name == "Backstage passes to a TAFKAL80ETC concert":
             return inventory.BackstagePass.build(item.sell_in)
         elif item.name == "Aged Brie":
@@ -25,7 +26,8 @@ class GildedRose(object):
                 good.update(quality)
                 item.quality = quality.amount
 
-    def is_sulfuras(self, item):
+    @staticmethod
+    def is_sulfuras(item):
         return item.name == "Sulfuras, Hand of Ragnaros"
 
 
