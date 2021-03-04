@@ -75,6 +75,11 @@ def test_backstage_pass():
     assert_backstage_pass_quality(23, 4, 20)
     assert_backstage_pass_quality(23, 4, 20)
     assert_backstage_pass_quality(0, 0, 20)
+    assert_backstage_pass_quality(23, 1, 20)
+    assert_backstage_pass_quality(22, 6, 20)
+    assert_backstage_pass_quality(23, 5, 20)
+    assert_backstage_pass_quality(21, 11, 20)
+    assert_backstage_pass_quality(22, 10, 20)
 
 
 def assert_aged_brie_quality(expected, sell_in, quality):
