@@ -7,7 +7,7 @@ class GoodCategory:
         if item.name == "Backstage passes to a TAFKAL80ETC concert":
             return inventory.BackstagePass(item.quality)
         elif item.name == "Aged Brie":
-            return inventory.AgedBrie(item.quality)
+            return inventory.AgedBrie.build(item.quality, item.sell_in)
         else:
             return inventory.Generic(item.quality)
     

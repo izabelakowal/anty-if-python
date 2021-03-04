@@ -33,14 +33,31 @@ class AgedBrie:
     def __init__(self, quality):
         self._quality = Quality(quality)
 
+    @staticmethod
+    def build(quality, sell_in):
+        if sell_in < 0:
+            return AgedBrie.Expired(quality)
+        else:
+            return AgedBrie(quality)
+
+    class Expired:
+        def __init__(self, quality):
+            self._quality = Quality(quality)
+
+        @property
+        def quality(self):
+            return self._quality.amount
+
+        def update(self, _):
+            self._quality.increase()
+            self._quality.increase()
+
     @property
     def quality(self):
         return self._quality.amount
 
     def update(self, sell_in):
         self._quality.increase()
-        if sell_in < 0:
-            self._quality.increase()
 
 
 class BackstagePass:
