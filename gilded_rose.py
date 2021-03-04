@@ -4,21 +4,12 @@ import inventory
 
 class GoodCategory:
     def build_for(self, item):
-        if self.is_generic(item):
-            return inventory.Generic(item.quality, item.sell_in)
-        elif self.is_aged_brie(item):
-            return inventory.AgedBrie(item.quality, item.sell_in)
-        elif self.is_backstage_pass(item):
+        if item.name == "Backstage passes to a TAFKAL80ETC concert":
             return inventory.BackstagePass(item.quality, item.sell_in)
-
-    def is_generic(self, item):
-        return not (self.is_aged_brie(item) or self.is_backstage_pass(item))
-
-    def is_aged_brie(self, item):
-        return item.name == "Aged Brie"
-
-    def is_backstage_pass(self, item):
-        return item.name == "Backstage passes to a TAFKAL80ETC concert"
+        elif item.name == "Aged Brie":
+            return inventory.AgedBrie(item.quality, item.sell_in)
+        else:
+            return inventory.Generic(item.quality, item.sell_in)
     
 
 class GildedRose(object):
@@ -28,7 +19,6 @@ class GildedRose(object):
     def update_quality(self):
         for item in self.items:
             if not self.is_sulfuras(item):
-                # item.sell_in -= 1
                 good = GoodCategory().build_for(item)
                 good.update()
                 item.quality = good.quality
