@@ -14,9 +14,6 @@ class Quality:
     def reset(self):
         self.amount = 0
 
-    def is_less_than_50(self):
-        return self.amount < 50
-
 
 class Generic:
     def __init__(self, quality, sell_in):

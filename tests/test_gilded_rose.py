@@ -90,9 +90,21 @@ def assert_aged_brie_quality(expected, sell_in, quality):
 
 def test_aged_brie():
     assert_aged_brie_quality(22, 0, 20)
+    assert_aged_brie_quality(21, 1, 20)
+
+
+def assert_generic_quality(expected, sell_in, quality):
+    items = [Item("Something Generic", sell_in, quality)]
+    GildedRose(items).update_quality()
+    assert expected == items[0].quality
 
 
 def test_generic():
     items = [Item("foo", -1, 3)]
     GildedRose(items).update_quality()
     assert 1 == items[0].quality
+    assert_generic_quality(1, -1, 3)
+    assert_generic_quality(1, 0, 3)
+    assert_generic_quality(2, 1, 3)
+    assert_generic_quality(0, 1, 0)
+    assert_generic_quality(0, 1, 1)
