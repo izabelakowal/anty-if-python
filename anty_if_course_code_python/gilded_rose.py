@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import inventory
+from anty_if_course_code_python import inventory
 
 
 class GoodCategory:

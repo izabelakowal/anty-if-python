@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
-import unittest
 
-from gilded_rose import Item, GildedRose
+from anty_if_course_code_python.gilded_rose import Item, GildedRose
 
 
 def test_foo():
