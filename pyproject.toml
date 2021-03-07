@@ -13,3 +13,17 @@ pytest = "^5.2"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[cosmic-ray]
+module-path = "anty_if_course_code_python"
+python-version = "3.6.9"
+timeout = 5.0
+exclude-modules = ["anty_if_course_code_python/tests"]
+test-command = "pytest"
+
+[cosmic-ray.execution-engine]
+name = "local"
+
+[cosmic-ray.cloning]
+method = "copy"
+commands = []
