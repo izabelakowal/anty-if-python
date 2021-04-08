@@ -1,8 +1,8 @@
 ### TODO
 
-* [ ] refactor Pythonic stuff
-* [ ] add CI - Github Actions maybe
-* [ ] add tox
-* [ ] experiment with different python mutation tests libs
-* [ ] write a nice README file
+* [ ] add coverage support in tox
+* [ ] update Makefile
+* [ ] update mutmut support
 * [ ] add conjured item
+* [ ] refactor Pythonic stuff
+* [ ] write a nice README file
