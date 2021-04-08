@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from anty_if_course_code_python import inventory
 
 
@@ -11,7 +10,7 @@ class GoodCategory:
             return inventory.AgedBrie.build(item.sell_in)
         else:
             return inventory.Generic.build(item.sell_in)
-    
+
 
 class GildedRose(object):
     def __init__(self, items):

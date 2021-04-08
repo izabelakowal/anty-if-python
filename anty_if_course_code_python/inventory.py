@@ -1,4 +1,3 @@
-
 class Quality:
     def __init__(self, amount):
         self.amount = amount
@@ -44,7 +43,7 @@ class AgedBrie:
 
     class Expired:
         @staticmethod
-        def update( quality):
+        def update(quality):
             quality.increase()
             quality.increase()
 
@@ -86,4 +85,3 @@ class BackstagePass:
         def update(quality):
             quality.increase()
             quality.increase()
-

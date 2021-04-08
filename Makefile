@@ -1,8 +1,12 @@
 # Makefile
-.PHONY: test
+.PHONY: test tox
 
 help:
 	@echo "test - run all tests"
+	@echo "tox - run tests with tox using existing interpreters"
 
 test:
-	pytest tests
+	pytest
+
+tox:
+	tox --skip-missing-interpreters

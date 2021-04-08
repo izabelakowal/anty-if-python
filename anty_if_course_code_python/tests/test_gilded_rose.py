@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from anty_if_course_code_python.gilded_rose import Item, GildedRose
 
 
@@ -36,31 +34,31 @@ def test_report():
         GildedRose(items).update_quality()
 
     assert [
-               "'-------- day 0 --------'",
-               "'name, sellIn, quality'",
-               "+5 Dexterity Vest, 8, 18",
-               "Aged Brie, 0, 2",
-               "Elixir of the Mongoose, 3, 5",
-               "Sulfuras, Hand of Ragnaros, 0, 80",
-               "Sulfuras, Hand of Ragnaros, -1, 80",
-               "Backstage passes to a TAFKAL80ETC concert, 13, 22",
-               "Backstage passes to a TAFKAL80ETC concert, 8, 50",
-               "Backstage passes to a TAFKAL80ETC concert, 3, 50",
-               "Conjured Mana Cake, 1, 4",
-               "''",
-               "'-------- day 1 --------'",
-               "'name, sellIn, quality'",
-               "+5 Dexterity Vest, 8, 18",
-               "Aged Brie, 0, 2",
-               "Elixir of the Mongoose, 3, 5",
-               "Sulfuras, Hand of Ragnaros, 0, 80",
-               "Sulfuras, Hand of Ragnaros, -1, 80",
-               "Backstage passes to a TAFKAL80ETC concert, 13, 22",
-               "Backstage passes to a TAFKAL80ETC concert, 8, 50",
-               "Backstage passes to a TAFKAL80ETC concert, 3, 50",
-               "Conjured Mana Cake, 1, 4",
-               "''",
-           ] == [repr(item) for item in report_lines]
+        "'-------- day 0 --------'",
+        "'name, sellIn, quality'",
+        "+5 Dexterity Vest, 8, 18",
+        "Aged Brie, 0, 2",
+        "Elixir of the Mongoose, 3, 5",
+        "Sulfuras, Hand of Ragnaros, 0, 80",
+        "Sulfuras, Hand of Ragnaros, -1, 80",
+        "Backstage passes to a TAFKAL80ETC concert, 13, 22",
+        "Backstage passes to a TAFKAL80ETC concert, 8, 50",
+        "Backstage passes to a TAFKAL80ETC concert, 3, 50",
+        "Conjured Mana Cake, 1, 4",
+        "''",
+        "'-------- day 1 --------'",
+        "'name, sellIn, quality'",
+        "+5 Dexterity Vest, 8, 18",
+        "Aged Brie, 0, 2",
+        "Elixir of the Mongoose, 3, 5",
+        "Sulfuras, Hand of Ragnaros, 0, 80",
+        "Sulfuras, Hand of Ragnaros, -1, 80",
+        "Backstage passes to a TAFKAL80ETC concert, 13, 22",
+        "Backstage passes to a TAFKAL80ETC concert, 8, 50",
+        "Backstage passes to a TAFKAL80ETC concert, 3, 50",
+        "Conjured Mana Cake, 1, 4",
+        "''",
+    ] == [repr(item) for item in report_lines]
 
 
 def assert_backstage_pass_quality(expected, sell_in, quality):
