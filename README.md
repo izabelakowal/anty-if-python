@@ -4,7 +4,7 @@ Original [Gilded Rose Kata](https://github.com/emilybache/GildedRose-Refactoring
 
 ### TODO
 
-* [ ] add coverage support in tox
+* [x] add coverage support in tox
 * [ ] update Makefile
 * [ ] update mutmut support
 * [ ] add conjured item
