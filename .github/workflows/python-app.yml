@@ -56,11 +56,11 @@ jobs:
         tox -e generate-mutmut-report
 
     - name: Upload mutation tests results
-        if: always()
-        uses: actions/upload-artifact@v2
-        with:
-          name: Mutation tests results
-          path: mutmut_report.xml
+      if: always()
+      uses: actions/upload-artifact@v2
+      with:
+        name: Mutation tests results
+        path: mutmut_report.xml
 
   publish-test-results:
     name: "Publish mutation tests results"
@@ -79,7 +79,7 @@ jobs:
         uses: EnricoMi/publish-unit-test-result-action@v1
         with:
           files: mutmut_report.xml
-          
+
       - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1.11
         if: always()
