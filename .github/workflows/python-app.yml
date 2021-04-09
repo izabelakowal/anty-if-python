@@ -3,8 +3,7 @@ name: anty-if-course-python - Gilded Rose Kata
 on: [push]
 
 jobs:
-  build:
-
+  test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -35,3 +34,23 @@ jobs:
     - name: Test with pytest
       run: |
         tox -e py
+
+  generate-mutants:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Run mutation tests
+      run: |
+        tox -e check-mutants
+    
+    - name: Generate mutation tests report
+      if: always()
+      run: |
+        tox -e generate-mutmut-report
+
+    - name: Publish Unit Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v1.11
+      if: always()
+      with:
+        files: test_results/*.xml
