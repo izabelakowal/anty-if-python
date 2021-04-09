@@ -1,0 +1,37 @@
+name: lint format and test
+
+on: [push]
+
+jobs:
+  lint-format-and-test:
+    name: "Lint, format and test!"
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9]
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        pip install tox
+        
+    - name: Lint with flake8
+      run: |
+        tox -e lint
+
+    - name: Check with black formatter
+      run: |
+        tox -e fmt-check
+        
+    - name: Test with pytest
+      run: |
+        tox -e py
