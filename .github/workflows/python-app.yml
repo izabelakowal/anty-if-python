@@ -55,8 +55,33 @@ jobs:
       run: |
         tox -e generate-mutmut-report
 
-    - name: Publish Unit Test Results
-      uses: EnricoMi/publish-unit-test-result-action@v1.11
-      if: always()
-      with:
-        files: test_results/*.xml
+    - name: Upload mutation tests results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: Mutation tests results
+          path: mutmut_report.xml
+
+  publish-test-results:
+    name: "Publish mutation tests results"
+    needs: generate-mutants
+    runs-on: ubuntu-latest
+    # the build-and-test job might be skipped, we don't need to run this job then
+    if: success() || failure()
+
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with:
+          path: artifacts
+
+      - name: Publish mutation test results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        with:
+          files: mutmut_report.xml
+          
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1.11
+        if: always()
+        with:
+          files: mutmut_report.xml
