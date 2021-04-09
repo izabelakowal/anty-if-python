@@ -15,6 +15,5 @@ Original [Gilded Rose Kata](https://github.com/emilybache/GildedRose-Refactoring
 ### Resources
 
 * [GildedRose-Refactoring-Kata](https://github.com/emilybache/GildedRose-Refactoring-Kata)
-* [Andrzej Krzywda's Arkademy](https://courses.arkademy.dev/) - it's **AWESOME** and it includes among others:
-  * [Anty-IF course](https://arkency.com/anti-ifs/)
+* [Andrzej Krzywda's Arkademy](https://courses.arkademy.dev/) - it's AWESOME and it includes, among others, the [Anty-IF course](https://arkency.com/anti-ifs/)
 * [mutmut](https://github.com/boxed/mutmut) - a Python mutation testing system
