@@ -4,6 +4,7 @@ on: [push]
 
 jobs:
   generate-mutants:
+    needs: lint-format-and-test
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -30,8 +31,7 @@ jobs:
         name: Mutation tests results
         path: mutmut_report.xml
 
-  publish-test-results:
-    name: "Publish mutation tests results"
+  publish-mutation-test-results:
     needs: generate-mutants
     runs-on: ubuntu-latest
     if: success() || failure()

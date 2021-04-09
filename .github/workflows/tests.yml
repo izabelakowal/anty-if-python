@@ -4,7 +4,6 @@ on: [push]
 
 jobs:
   lint-format-and-test:
-    name: "Lint, format and test!"
     runs-on: ubuntu-latest
     strategy:
       matrix:
