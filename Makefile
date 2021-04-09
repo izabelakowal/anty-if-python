@@ -6,7 +6,7 @@ help:
 	@echo "tox - run tests with tox using existing interpreters"
 
 test:
-	pytest
+	tox -e py39
 
 tox:
 	tox --skip-missing-interpreters
