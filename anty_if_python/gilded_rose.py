@@ -15,7 +15,7 @@ class Item:
 
 class GoodCategory:
     @staticmethod  # pragma: no mutate
-    def build_for(item):
+    def build_for(item: Item) -> inventory.Good:
         if item.name == "Backstage passes to a TAFKAL80ETC concert":
             return inventory.BackstagePass.build(item.sell_in)
         elif item.name == "Aged Brie":
@@ -24,7 +24,7 @@ class GoodCategory:
             return inventory.Generic.build(item.sell_in)
 
 
-class GildedRose(object):
+class GildedRose:
     def __init__(self, items: List[Item]) -> None:
         self.items = items
 

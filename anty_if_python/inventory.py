@@ -1,4 +1,5 @@
 from __future__ import annotations
+from abc import ABC, abstractmethod
 
 
 class Quality:
@@ -17,7 +18,13 @@ class Quality:
         self.amount = 0
 
 
-class Generic:
+class Good(ABC):
+    @abstractmethod  # pragma: no mutate
+    def update(self, quality: Quality) -> None:
+        pass
+
+
+class Generic(Good):
     @staticmethod
     def update(quality: Quality) -> None:
         quality.degrade()
@@ -29,14 +36,14 @@ class Generic:
         else:
             return Generic()
 
-    class Expired:
+    class Expired(Good):
         @staticmethod
         def update(quality: Quality) -> None:
             quality.degrade()
             quality.degrade()
 
 
-class AgedBrie:
+class AgedBrie(Good):
     @staticmethod
     def update(quality: Quality) -> None:
         quality.increase()
@@ -48,14 +55,14 @@ class AgedBrie:
         else:
             return AgedBrie()
 
-    class Expired:
+    class Expired(Good):
         @staticmethod
         def update(quality: Quality) -> None:
             quality.increase()
             quality.increase()
 
 
-class BackstagePass:
+class BackstagePass(Good):
     @staticmethod
     def update(quality):
         quality.increase()
@@ -71,19 +78,19 @@ class BackstagePass:
         else:
             return BackstagePass()
 
-    class Expired:
+    class Expired(Good):
         @staticmethod
         def update(quality: Quality) -> None:
             quality.reset()
 
-    class LessThan5Days:
+    class LessThan5Days(Good):
         @staticmethod
         def update(quality: Quality) -> None:
             quality.increase()
             quality.increase()
             quality.increase()
 
-    class LessThan10Days:
+    class LessThan10Days(Good):
         @staticmethod
         def update(quality: Quality) -> None:
             quality.increase()
