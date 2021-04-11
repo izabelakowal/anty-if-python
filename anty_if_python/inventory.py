@@ -21,7 +21,7 @@ class Quality:
 class Good(ABC):
     @abstractmethod  # pragma: no mutate
     def update(self, quality: Quality) -> None:
-        pass
+        raise NotImplementedError
 
 
 class Generic(Good):
