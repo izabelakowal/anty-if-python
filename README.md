@@ -11,18 +11,7 @@ You could write some unit tests yourself, using the requirements to identify sui
 
 Alternatively, use the "Text-Based" tests provided in this repository. (Read more about that in the next section)
 
-Whichever testing approach you choose, the idea of the exercise is to do some deliberate practice, and improve your skills at designing test cases and refactoring. The idea is not to re-write the code from scratch, but rather to practice designing tests, taking small steps, running the tests often, and incrementally improving the design. 
-
-
-### TODO
-
-* [x] add coverage support in tox
-* [ ] update Makefile
-* [x] update mutmut support
-* [ ] add conjured item
-* [ ] refactor Pythonic stuff
-* [x] add MIT licence
-* [x] write a nice README file
+Whichever testing approach you choose, the idea of the exercise is to do some deliberate practice, and improve your skills at designing test cases and refactoring. The idea is not to re-write the code from scratch, but rather to practice designing tests, taking small steps, running the tests often, and incrementally improving the design.
 
 ### Resources
 
