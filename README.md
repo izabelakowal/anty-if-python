@@ -3,7 +3,7 @@
 Original [Gilded Rose Kata](https://github.com/emilybache/GildedRose-Refactoring-Kata), done with Python using [Arkademy's Anty-IF Framework](https://blog.arkency.com/anti-if-framework---if-slash-else-based-on-type/) and [mutmut](https://github.com/boxed/mutmut) mutation tests.
 
 
-## How to use the Gilded Rose kata? *(based on the original repo)*
+## How to use the Gilded Rose kata? *(based on [the original repo](https://github.com/emilybache/GildedRose-Refactoring-Kata))*
 
 The simplest way is to just clone the code and start hacking away improving the design. You'll want to look at the ["Gilded Rose Requirements"](https://github.com/emilybache/GildedRose-Refactoring-Kata/tree/master/GildedRoseRequirements.txt) which explains what the code is for. I strongly advise you that you'll also need some tests if you want to make sure you don't break the code while you refactor.
 
