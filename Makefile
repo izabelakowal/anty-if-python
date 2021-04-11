@@ -1,5 +1,5 @@
 # Makefile
-.PHONY: devenv test lint check-format format tox pre-commit clean
+.PHONY: devenv test lint check-format format tox pre-commit clean clean-mutmut
 
 PY = py39
 
@@ -14,6 +14,7 @@ help:
 	@echo "tox - run all tox actions using existing interpreters"
 	@echo "pre-commit - run all pre-commit hooks"
 	@echo "clean - clean project cache"
+	@echo "clean-mutmut - clean only mutmut cache"
 
 devenv:
 	tox -e devenv
@@ -40,4 +41,7 @@ pre-commit:
 clean:
 	@find . -type d -name '__pycache__' | xargs rm -rf
 	@find . -type d -name '.pytest_cache' | xargs rm -rf
+	@if [ -f .mutmut-cache ]; then rm .mutmut-cache; fi
+
+clean-mutmut:
 	@if [ -f .mutmut-cache ]; then rm .mutmut-cache; fi
