@@ -4,6 +4,7 @@
 PY = py39
 
 help:
+	@echo "you need to have tox installed already (I recommend installing it with pipx)"
 	@echo "test - install deps and run all tests with $(PY)"
 	@echo "lint - run linting"
 	@echo "check-format - check formatting"
