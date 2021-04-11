@@ -18,7 +18,7 @@ class Generic:
     @staticmethod
     def build(sell_in):
         if sell_in < 0:
-            return Generic.Expired()
+            return Generic().Expired()
         else:
             return Generic()
 
@@ -37,7 +37,7 @@ class AgedBrie:
     @staticmethod
     def build(sell_in):
         if sell_in < 0:
-            return AgedBrie.Expired()
+            return AgedBrie().Expired()
         else:
             return AgedBrie()
 
@@ -56,11 +56,11 @@ class BackstagePass:
     @staticmethod
     def build(sell_in):
         if sell_in < 0:
-            return BackstagePass.Expired()
+            return BackstagePass().Expired()
         elif sell_in < 5:
-            return BackstagePass.LessThan5Days()
+            return BackstagePass().LessThan5Days()
         elif sell_in < 10:
-            return BackstagePass.LessThan10Days()
+            return BackstagePass().LessThan10Days()
         else:
             return BackstagePass()
 
