@@ -1,4 +1,6 @@
 ## anty-if-python
+![build status](https://github.com/izabelakowal/anty-if-python/actions/workflows/tests.yml/badge.svg)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/izabelakowal/anty-if-python/blob/main/LICENCE)
 
 Original [Gilded Rose Kata](https://github.com/emilybache/GildedRose-Refactoring-Kata), done with Python using [Arkademy's Anty-IF Framework](https://blog.arkency.com/anti-if-framework---if-slash-else-based-on-type/) and [mutmut](https://github.com/boxed/mutmut) mutation tests.
 
