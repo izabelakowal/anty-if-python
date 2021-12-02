@@ -31,9 +31,16 @@ jobs:
       run: |
         tox -e fmt-check
 
-    - name: Test with pytest
+    - name: Test with pytest and generate coverage report
       run: |
         tox -e py
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v2
+      with:
+        directory: ./reports/
+        fail_ci_if_error: true
+        verbose: true
 
   generate-mutants:
     needs: lint-format-and-test
