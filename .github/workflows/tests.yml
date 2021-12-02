@@ -31,7 +31,7 @@ jobs:
       run: |
         tox -e fmt-check
 
-    - name: Test with pytest
+    - name: Test with pytest and generate coverage report
       run: |
         tox -e py
 

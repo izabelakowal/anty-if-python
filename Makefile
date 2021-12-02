@@ -7,7 +7,7 @@ help:
 	@echo "initial setup:"
 	@echo "you need to have tox and pre-commit installed already (I recommend installing it with pipx)"
 	@echo "devenv - if you still want to install extra deps: tox and pre-commit in venv\n"
-	@echo "test - install deps and run all tests with $(PY)"
+	@echo "test - install deps, run all tests with $(PY) and generate coverage report"
 	@echo "lint - run linting"
 	@echo "check-format - check formatting"
 	@echo "format - run formatting"
@@ -41,6 +41,7 @@ pre-commit:
 clean:
 	@find . -type d -name '__pycache__' | xargs rm -rf
 	@find . -type d -name '.pytest_cache' | xargs rm -rf
+	@find . -type d -name 'reports' | xargs rm -rf
 	@if [ -f .mutmut-cache ]; then rm .mutmut-cache; fi
 
 clean-mutmut:
