@@ -35,6 +35,13 @@ jobs:
       run: |
         tox -e py
 
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v2
+      with:
+        directory: ./reports/
+        fail_ci_if_error: true
+        verbose: true
+
   generate-mutants:
     needs: lint-format-and-test
     runs-on: ubuntu-latest
